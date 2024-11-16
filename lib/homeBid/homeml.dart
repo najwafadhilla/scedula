@@ -2,16 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scedula/Screen/HomePage/home.dart';
 import 'package:scedula/daftaranggota/anggotaml.dart';
+import 'package:scedula/homeBid/homevoly.dart';
 import 'package:scedula/homebid2/proker.dart';
 import 'package:scedula/proker/ml.dart';
 import 'package:scedula/riwayatkegiatan/rkml.dart';
 import 'package:scedula/theme/color_theme.dart';
+
+import '../absen/absensi1.dart';
+import '../models/list_proker.dart';
 
 class HomeMl extends StatelessWidget {
   const HomeMl({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Contoh data program kerja yang akan dikirim
+    final ProgramKerja mlProker = ProgramKerja(titleProker: 'Mobile Legends');
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -48,7 +54,7 @@ class HomeMl extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => HomePage(),
+                                        builder: (context) => const HomePage(),
                                       ));
                                 },
                                 child: Image.asset(
@@ -69,7 +75,7 @@ class HomeMl extends StatelessWidget {
                                   style: GoogleFonts.inter(
                                       fontSize: 33, color: Colors.white),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 8,
                                 ),
                                 Text(
@@ -77,20 +83,18 @@ class HomeMl extends StatelessWidget {
                                   style: GoogleFonts.inter(
                                       fontSize: 13, color: Colors.white),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
-                            Container(
-                              child: Image.asset(
-                                "assets/images/ml.png",
-                                width: 125,
-                                height: 139,
-                              ),
+                            Image.asset(
+                              "assets/images/ml.png",
+                              width: 125,
+                              height: 139,
                             ),
                           ],
                         ),
@@ -117,7 +121,7 @@ class HomeMl extends StatelessWidget {
                             builder: (context) => Anggotaml(),
                           ));
                     },
-                    child: Proker(
+                    child: const Proker(
                         imageUrl: "assets/images/anggota.png",
                         title: "Daftar\nAnggota"),
                   ),
@@ -129,7 +133,7 @@ class HomeMl extends StatelessWidget {
                             builder: (context) => Ml(),
                           ));
                     },
-                    child: Proker(
+                    child: const Proker(
                         imageUrl: "assets/images/programkerja.png",
                         title: "Program\n Kerja"),
                   ),
@@ -141,13 +145,26 @@ class HomeMl extends StatelessWidget {
                             builder: (context) => Rkml(),
                           ));
                     },
-                    child: Proker(
+                    child: const Proker(
                         imageUrl: "assets/images/riwayat.png",
                         title: "Riwayat \n Kegiatan"),
                   ),
-                  Proker(
-                      imageUrl: "assets/images/absensi.png",
-                      title: "Absensi \nAnggota"),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AbsenPage(
+                            programKerja: mlProker,
+                            originatingPage: const Homevoly(), // Halaman asal
+                          ),
+                        ),
+                      );
+                    },
+                    child: const Proker(
+                        imageUrl: "assets/images/absensi.png",
+                        title: "Absensi \nAnggota"),
+                  ),
                 ],
               ),
             )

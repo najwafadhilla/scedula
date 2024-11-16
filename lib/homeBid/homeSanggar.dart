@@ -4,6 +4,7 @@ import 'package:scedula/Screen/HomePage/home.dart';
 import 'package:scedula/absen/absensi1.dart';
 import 'package:scedula/daftaranggota/anggotasanggar.dart';
 import 'package:scedula/homebid2/proker.dart';
+import 'package:scedula/models/list_proker.dart';
 import 'package:scedula/proker/sanggar.dart';
 import 'package:scedula/riwayatkegiatan/rksanggar.dart';
 import 'package:scedula/theme/color_theme.dart';
@@ -13,6 +14,10 @@ class Homesanggar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Contoh data program kerja yang akan dikirim
+    final ProgramKerja sanggarTariProker =
+        ProgramKerja(titleProker: 'Sanggar Tari');
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -41,15 +46,13 @@ class Homesanggar extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(
-                                top: 6,
-                              ),
+                              padding: const EdgeInsets.only(top: 6),
                               child: InkWell(
                                 onTap: () {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => HomePage(),
+                                        builder: (context) => const HomePage(),
                                       ));
                                 },
                                 child: Image.asset(
@@ -59,9 +62,7 @@ class Homesanggar extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              width: 8,
-                            ),
+                            const SizedBox(width: 8),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -70,28 +71,20 @@ class Homesanggar extends StatelessWidget {
                                   style: GoogleFonts.inter(
                                       fontSize: 33, color: Colors.white),
                                 ),
-                                SizedBox(
-                                  width: 8,
-                                ),
+                                const SizedBox(width: 8),
                                 Text(
                                   "Cakrawala 2023/2024",
                                   style: GoogleFonts.inter(
                                       fontSize: 13, color: Colors.white),
                                 ),
-                                SizedBox(
-                                  width: 10,
-                                ),
+                                const SizedBox(width: 10),
                               ],
                             ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Container(
-                              child: Image.asset(
-                                "assets/images/proktari.png",
-                                width: 124,
-                                height: 116,
-                              ),
+                            const SizedBox(width: 5),
+                            Image.asset(
+                              "assets/images/proktari.png",
+                              width: 124,
+                              height: 116,
                             ),
                           ],
                         ),
@@ -101,9 +94,7 @@ class Homesanggar extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.only(left: 16),
               child: Wrap(
@@ -118,7 +109,7 @@ class Homesanggar extends StatelessWidget {
                             builder: (context) => Anggotasanggar(),
                           ));
                     },
-                    child: Proker(
+                    child: const Proker(
                         imageUrl: "assets/images/anggota.png",
                         title: "Daftar\nAnggota"),
                   ),
@@ -130,7 +121,7 @@ class Homesanggar extends StatelessWidget {
                             builder: (context) => Sanggar(),
                           ));
                     },
-                    child: Proker(
+                    child: const Proker(
                         imageUrl: "assets/images/programkerja.png",
                         title: "Program\nKerja"),
                   ),
@@ -142,19 +133,24 @@ class Homesanggar extends StatelessWidget {
                             builder: (context) => Rksanggar(),
                           ));
                     },
-                    child: Proker(
+                    child: const Proker(
                         imageUrl: "assets/images/riwayat.png",
                         title: "Riwayat \n Kegiatan"),
                   ),
                   InkWell(
                     onTap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => AbsenPage(),
-                          ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AbsenPage(
+                            programKerja: sanggarTariProker,
+                            originatingPage:
+                                const Homesanggar(), // Halaman asal
+                          ),
+                        ),
+                      );
                     },
-                    child: Proker(
+                    child: const Proker(
                         imageUrl: "assets/images/absensi.png",
                         title: "Absensi \nAnggota"),
                   ),

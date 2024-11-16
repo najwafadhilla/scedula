@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:scedula/theme/color_theme.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: KirimAbsenPage(),
     );
@@ -125,7 +125,7 @@ class _KirimAbsenPageState extends State<KirimAbsenPage> {
                 ),
                 child: const Text(
                   'Kirim',
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
             ),
