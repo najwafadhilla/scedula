@@ -7,11 +7,16 @@ import 'package:scedula/proker/futsal.dart';
 import 'package:scedula/riwayatkegiatan/rkfutsal.dart';
 import 'package:scedula/theme/color_theme.dart';
 
+import '../absen/absensi1.dart';
+import '../models/list_proker.dart';
+
 class HomeFutsal extends StatelessWidget {
   const HomeFutsal({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Contoh data program kerja yang akan dikirim
+    final ProgramKerja futsalProker = ProgramKerja(titleProker: 'Futsal');
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -48,7 +53,7 @@ class HomeFutsal extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => HomePage(),
+                                        builder: (context) => const HomePage(),
                                       ));
                                 },
                                 child: Image.asset(
@@ -69,7 +74,7 @@ class HomeFutsal extends StatelessWidget {
                                   style: GoogleFonts.inter(
                                       fontSize: 33, color: Colors.white),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 8,
                                 ),
                                 Text(
@@ -77,21 +82,18 @@ class HomeFutsal extends StatelessWidget {
                                   style: GoogleFonts.inter(
                                       fontSize: 13, color: Colors.white),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
-                            Container(
-                              child: Image.asset(
-                                "assets/images/futsal.png",
-                                width: 124,
-                                height: 116,
-                               
-                              ),
+                            Image.asset(
+                              "assets/images/futsal.png",
+                              width: 124,
+                              height: 116,
                             ),
                           ],
                         ),
@@ -118,7 +120,7 @@ class HomeFutsal extends StatelessWidget {
                             builder: (context) => AnggotaFutsal(),
                           ));
                     },
-                    child: Proker(
+                    child: const Proker(
                         imageUrl: "assets/images/anggota.png",
                         title: "Daftar\nAnggota"),
                   ),
@@ -130,7 +132,7 @@ class HomeFutsal extends StatelessWidget {
                             builder: (context) => Futsal(),
                           ));
                     },
-                    child: Proker(
+                    child: const Proker(
                         imageUrl: "assets/images/programkerja.png",
                         title: "Program\n Kerja"),
                   ),
@@ -142,13 +144,26 @@ class HomeFutsal extends StatelessWidget {
                             builder: (context) => Rkfutsal(),
                           ));
                     },
-                    child: Proker(
+                    child: const Proker(
                         imageUrl: "assets/images/riwayat.png",
                         title: "Riwayat \n Kegiatan"),
                   ),
-                  Proker(
-                      imageUrl: "assets/images/absensi.png",
-                      title: "Absensi \nAnggota"),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AbsenPage(
+                            programKerja: futsalProker,
+                            originatingPage: const HomeFutsal(), // Halaman asal
+                          ),
+                        ),
+                      );
+                    },
+                    child: const Proker(
+                        imageUrl: "assets/images/absensi.png",
+                        title: "Absensi \nAnggota"),
+                  ),
                 ],
               ),
             )

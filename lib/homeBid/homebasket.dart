@@ -7,11 +7,16 @@ import 'package:scedula/proker/basket.dart';
 import 'package:scedula/riwayatkegiatan/rkbasket.dart';
 import 'package:scedula/theme/color_theme.dart';
 
+import '../absen/absensi1.dart';
+import '../models/list_proker.dart';
+
 class Homebasket extends StatelessWidget {
   const Homebasket({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Contoh data program kerja yang akan dikirim
+    final ProgramKerja basketProker = ProgramKerja(titleProker: 'Basket');
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -48,7 +53,7 @@ class Homebasket extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => HomePage(),
+                                        builder: (context) => const HomePage(),
                                       ));
                                 },
                                 child: Image.asset(
@@ -69,7 +74,7 @@ class Homebasket extends StatelessWidget {
                                   style: GoogleFonts.inter(
                                       fontSize: 33, color: Colors.white),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 8,
                                 ),
                                 Text(
@@ -77,20 +82,18 @@ class Homebasket extends StatelessWidget {
                                   style: GoogleFonts.inter(
                                       fontSize: 13, color: Colors.white),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
-                            Container(
-                              child: Image.asset(
-                                "assets/images/bola_basket.png",
-                                width: 164,
-                                height: 127,
-                              ),
+                            Image.asset(
+                              "assets/images/bola_basket.png",
+                              width: 164,
+                              height: 127,
                             ),
                           ],
                         ),
@@ -117,7 +120,7 @@ class Homebasket extends StatelessWidget {
                             builder: (context) => Anggotabasket(),
                           ));
                     },
-                    child: Proker(
+                    child: const Proker(
                         imageUrl: "assets/images/anggota.png",
                         title: "Daftar\nAnggota"),
                   ),
@@ -126,7 +129,7 @@ class Homebasket extends StatelessWidget {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Basket()));
                     },
-                    child: Proker(
+                    child: const Proker(
                         imageUrl: "assets/images/programkerja.png",
                         title: "Program\n Kerja"),
                   ),
@@ -138,13 +141,26 @@ class Homebasket extends StatelessWidget {
                             builder: (context) => Rkbasket(),
                           ));
                     },
-                    child: Proker(
+                    child: const Proker(
                         imageUrl: "assets/images/riwayat.png",
                         title: "Riwayat \n Kegiatan"),
                   ),
-                  Proker(
-                      imageUrl: "assets/images/absensi.png",
-                      title: "Absensi \nAnggota"),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AbsenPage(
+                            programKerja: basketProker,
+                            originatingPage: const Homebasket(), // Halaman asal
+                          ),
+                        ),
+                      );
+                    },
+                    child: const Proker(
+                        imageUrl: "assets/images/absensi.png",
+                        title: "Absensi \nAnggota"),
+                  ),
                 ],
               ),
             )

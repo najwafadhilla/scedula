@@ -6,7 +6,9 @@ class Proker extends StatelessWidget {
   final String imageUrl;
   final String title;
   const Proker({
-    super.key, required this.imageUrl, required this.title,
+    super.key,
+    required this.imageUrl,
+    required this.title,
   });
 
   @override

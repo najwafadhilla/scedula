@@ -7,11 +7,16 @@ import 'package:scedula/proker/voly.dart';
 import 'package:scedula/riwayatkegiatan/rkvolly.dart';
 import 'package:scedula/theme/color_theme.dart';
 
+import '../absen/absensi1.dart';
+import '../models/list_proker.dart';
+
 class Homevoly extends StatelessWidget {
   const Homevoly({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Contoh data program kerja yang akan dikirim
+    final ProgramKerja volyProker = ProgramKerja(titleProker: 'Voly');
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -48,7 +53,7 @@ class Homevoly extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => HomePage(),
+                                        builder: (context) => const HomePage(),
                                       ));
                                 },
                                 child: Image.asset(
@@ -69,7 +74,7 @@ class Homevoly extends StatelessWidget {
                                   style: GoogleFonts.inter(
                                       fontSize: 33, color: Colors.white),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 8,
                                 ),
                                 Text(
@@ -77,22 +82,22 @@ class Homevoly extends StatelessWidget {
                                   style: GoogleFonts.inter(
                                       fontSize: 13, color: Colors.white),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
                             Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12)),
                               child: Image.asset(
                                 "assets/images/voly.png",
                                 width: 124,
                                 height: 116,
                               ),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12)),
                             ),
                           ],
                         ),
@@ -119,7 +124,7 @@ class Homevoly extends StatelessWidget {
                             builder: (context) => Anggotavoly(),
                           ));
                     },
-                    child: Proker(
+                    child: const Proker(
                         imageUrl: "assets/images/anggota.png",
                         title: "Daftar\nAnggota"),
                   ),
@@ -131,7 +136,7 @@ class Homevoly extends StatelessWidget {
                             builder: (context) => Voly(),
                           ));
                     },
-                    child: Proker(
+                    child: const Proker(
                         imageUrl: "assets/images/programkerja.png",
                         title: "Program\n Kerja"),
                   ),
@@ -143,13 +148,26 @@ class Homevoly extends StatelessWidget {
                             builder: (context) => Rkvolly(),
                           ));
                     },
-                    child: Proker(
+                    child: const Proker(
                         imageUrl: "assets/images/riwayat.png",
                         title: "Riwayat \n Kegiatan"),
                   ),
-                  Proker(
-                      imageUrl: "assets/images/absensi.png",
-                      title: "Absensi \nAnggota"),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AbsenPage(
+                            programKerja: volyProker,
+                            originatingPage: const Homevoly(), // Halaman asal
+                          ),
+                        ),
+                      );
+                    },
+                    child: const Proker(
+                        imageUrl: "assets/images/absensi.png",
+                        title: "Absensi \nAnggota"),
+                  ),
                 ],
               ),
             )
