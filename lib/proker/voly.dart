@@ -27,7 +27,7 @@ class Voly extends StatelessWidget {
         ),
       ),
       body: prokerr(
-        imageUrll: 'assets/images/Voly.png',
+        imageUrll: 'assets/images/voly.png',
         titlee: "Volley",
         text2: "Latihan di lapangan voly unimal",
         text3: "13 Sep 2023, 14.00",

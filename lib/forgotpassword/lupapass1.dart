@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scedula/forgotpassword/lupapass2.dart';
+import 'package:scedula/theme/color_theme.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,24 +42,15 @@ class ForgotPasswordScreen extends StatelessWidget {
             SizedBox(height: 20),
             Text(
               'Lupa Password?',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 24, fontWeight: FontWeight.bold, color: blackColor),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 10),
             Text(
               'Masukkan Email anda untuk reset password',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+              style: TextStyle(fontSize: 16, color: blackColor),
               textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 20),
-            Container(
-              padding: EdgeInsets.all(12),
-              color: Colors.red[100],
-              child: Text(
-                'kami sudah mengirim surel yang berisi kode verifikasi untuk mereset kata sandi Anda !',
-                style: TextStyle(color: Colors.red, fontSize: 14),
-                textAlign: TextAlign.center,
-              ),
             ),
             SizedBox(height: 20),
             TextField(

@@ -7,6 +7,12 @@ import 'package:scedula/homeBid/homebadminton.dart';
 import 'package:scedula/homeBid/homebasket.dart';
 import 'package:scedula/homeBid/homeml.dart';
 import 'package:scedula/homeBid/homevoly.dart';
+import 'package:scedula/proker/badminton.dart';
+import 'package:scedula/proker/basket.dart';
+import 'package:scedula/proker/futsal.dart';
+import 'package:scedula/proker/ml.dart';
+import 'package:scedula/proker/sanggar.dart';
+import 'package:scedula/proker/voly.dart';
 import 'package:scedula/theme/color_theme.dart';
 import 'package:scedula/theme/fonts_theme.dart';
 import 'package:scedula/notifikasi/notifikasi.dart';
@@ -429,403 +435,451 @@ class HomePage extends StatelessWidget {
               const SizedBox(
                 height: 15,
               ),
-              Container(
-                padding: const EdgeInsets.only(
-                  top: 8,
-                  bottom: 8,
-                  left: 10,
-                ),
-                width: double.infinity,
-                height: 94,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: orangeColor,
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Sanggar()));
+                },
+                child: Container(
+                  padding: const EdgeInsets.only(
+                    top: 8,
+                    bottom: 8,
+                    left: 10,
                   ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: SizedBox(
-                        width: 93,
-                        height: 78,
-                        child: Image.asset(
-                          "assets/images/sanggar.png",
-                          fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: 94,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: orangeColor,
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: SizedBox(
+                          width: 93,
+                          height: 78,
+                          child: Image.asset(
+                            "assets/images/sanggar.png",
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Sanggar",
-                          style: regularOrangeText.copyWith(
-                            fontSize: 20,
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Sanggar",
+                            style: regularOrangeText.copyWith(
+                              fontSize: 20,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "Latihan di sanggar Unimal",
-                          style: regularGreyText.copyWith(
-                            fontSize: 13,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 9,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 107,
-                          ),
-                          child: Text(
-                            "13 Sep 2024, 16.00",
-                            style: regularBrownText.copyWith(
+                          Text(
+                            "Latihan di sanggar Unimal",
+                            style: regularGreyText.copyWith(
                               fontSize: 13,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          const SizedBox(
+                            height: 9,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 107,
+                            ),
+                            child: Text(
+                              "13 Sep 2024, 16.00",
+                              style: regularBrownText.copyWith(
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(
                 height: 13,
               ),
-              Container(
-                padding: const EdgeInsets.only(
-                  top: 8,
-                  bottom: 8,
-                  left: 10,
-                ),
-                width: double.infinity,
-                height: 94,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: orangeColor,
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Badminton(),
+                      ));
+                },
+                child: Container(
+                  padding: const EdgeInsets.only(
+                    top: 8,
+                    bottom: 8,
+                    left: 10,
                   ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: SizedBox(
-                        width: 93,
-                        height: 78,
-                        child: Image.asset(
-                          "assets/images/badminton.png",
-                          fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: 94,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: orangeColor,
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: SizedBox(
+                          width: 93,
+                          height: 78,
+                          child: Image.asset(
+                            "assets/images/badminton.png",
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Badminton",
-                          style: regularOrangeText.copyWith(
-                            fontSize: 20,
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Badminton",
+                            style: regularOrangeText.copyWith(
+                              fontSize: 20,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "Latihan  badminton di gor unimal",
-                          style: regularGreyText.copyWith(
-                            fontSize: 13,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 9,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 107,
-                          ),
-                          child: Text(
-                            "13 Sep 2024, 16.00",
-                            style: regularBrownText.copyWith(
+                          Text(
+                            "Latihan  badminton di gor unimal",
+                            style: regularGreyText.copyWith(
                               fontSize: 13,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          const SizedBox(
+                            height: 9,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 107,
+                            ),
+                            child: Text(
+                              "13 Sep 2024, 16.00",
+                              style: regularBrownText.copyWith(
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(
                 height: 13,
               ),
-              Container(
-                padding: const EdgeInsets.only(
-                  top: 8,
-                  bottom: 8,
-                  left: 10,
-                ),
-                width: double.infinity,
-                height: 94,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: orangeColor,
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Voly(),
+                      ));
+                },
+                child: Container(
+                  padding: const EdgeInsets.only(
+                    top: 8,
+                    bottom: 8,
+                    left: 10,
                   ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: SizedBox(
-                        width: 93,
-                        height: 78,
-                        child: Image.asset(
-                          "assets/images/voly.png",
-                          fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: 94,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: orangeColor,
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: SizedBox(
+                          width: 93,
+                          height: 78,
+                          child: Image.asset(
+                            "assets/images/voly.png",
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Volley",
-                          style: regularOrangeText.copyWith(
-                            fontSize: 20,
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Volley",
+                            style: regularOrangeText.copyWith(
+                              fontSize: 20,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "Latihan di lap.volley Unimal",
-                          style: regularGreyText.copyWith(
-                            fontSize: 13,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 9,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 107,
-                          ),
-                          child: Text(
-                            "13 Sep 2024, 16.00",
-                            style: regularBrownText.copyWith(
+                          Text(
+                            "Latihan di lap.volley Unimal",
+                            style: regularGreyText.copyWith(
                               fontSize: 13,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          const SizedBox(
+                            height: 9,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 107,
+                            ),
+                            child: Text(
+                              "13 Sep 2024, 16.00",
+                              style: regularBrownText.copyWith(
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(
                 height: 13,
               ),
-              Container(
-                padding: const EdgeInsets.only(
-                  top: 8,
-                  bottom: 8,
-                  left: 10,
-                ),
-                width: double.infinity,
-                height: 94,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: orangeColor,
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Futsal()));
+                },
+                child: Container(
+                  padding: const EdgeInsets.only(
+                    top: 8,
+                    bottom: 8,
+                    left: 10,
                   ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: SizedBox(
-                        width: 93,
-                        height: 78,
-                        child: Image.asset(
-                          "assets/images/futsal.png",
-                          fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: 94,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: orangeColor,
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: SizedBox(
+                          width: 93,
+                          height: 78,
+                          child: Image.asset(
+                            "assets/images/futsal.png",
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Futsal",
-                          style: regularOrangeText.copyWith(
-                            fontSize: 20,
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Futsal",
+                            style: regularOrangeText.copyWith(
+                              fontSize: 20,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "Latihan di Lap.Futsal Unimal",
-                          style: regularGreyText.copyWith(
-                            fontSize: 13,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 9,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 107,
-                          ),
-                          child: Text(
-                            "13 Sep 2024, 16.00",
-                            style: regularBrownText.copyWith(
+                          Text(
+                            "Latihan di Lap.Futsal Unimal",
+                            style: regularGreyText.copyWith(
                               fontSize: 13,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          const SizedBox(
+                            height: 9,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 107,
+                            ),
+                            child: Text(
+                              "13 Sep 2024, 16.00",
+                              style: regularBrownText.copyWith(
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(
                 height: 13,
               ),
-              Container(
-                padding: const EdgeInsets.only(
-                  top: 8,
-                  bottom: 8,
-                  left: 10,
-                ),
-                width: double.infinity,
-                height: 94,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: orangeColor,
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Basket(),
+                      ));
+                },
+                child: Container(
+                  padding: const EdgeInsets.only(
+                    top: 8,
+                    bottom: 8,
+                    left: 10,
                   ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: SizedBox(
-                        width: 93,
-                        height: 78,
-                        child: Image.asset(
-                          "assets/images/bola_basket.png",
-                          fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: 94,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: orangeColor,
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: SizedBox(
+                          width: 93,
+                          height: 78,
+                          child: Image.asset(
+                            "assets/images/bola_basket.png",
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Basket",
-                          style: regularOrangeText.copyWith(
-                            fontSize: 20,
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Basket",
+                            style: regularOrangeText.copyWith(
+                              fontSize: 20,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "Latihan di Lap.Basket Unimal",
-                          style: regularGreyText.copyWith(
-                            fontSize: 13,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 9,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 107,
-                          ),
-                          child: Text(
-                            "13 Sep 2024, 16.00",
-                            style: regularBrownText.copyWith(
+                          Text(
+                            "Latihan di Lap.Basket Unimal",
+                            style: regularGreyText.copyWith(
                               fontSize: 13,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          const SizedBox(
+                            height: 9,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 107,
+                            ),
+                            child: Text(
+                              "13 Sep 2024, 16.00",
+                              style: regularBrownText.copyWith(
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(
                 height: 13,
               ),
-              Container(
-                padding: const EdgeInsets.only(
-                  top: 8,
-                  bottom: 8,
-                  left: 10,
-                ),
-                width: double.infinity,
-                height: 94,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: orangeColor,
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Ml(),
+                      ));
+                },
+                child: Container(
+                  padding: const EdgeInsets.only(
+                    top: 8,
+                    bottom: 8,
+                    left: 10,
                   ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: SizedBox(
-                        width: 93,
-                        height: 78,
-                        child: Image.asset(
-                          "assets/images/ml.png",
-                          fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: 94,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: orangeColor,
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: SizedBox(
+                          width: 93,
+                          height: 78,
+                          child: Image.asset(
+                            "assets/images/ml.png",
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Mobile Legends",
-                          style: regularOrangeText.copyWith(
-                            fontSize: 20,
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Mobile Legends",
+                            style: regularOrangeText.copyWith(
+                              fontSize: 20,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "Latihan di warkop dubai",
-                          style: regularGreyText.copyWith(
-                            fontSize: 13,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 9,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 107,
-                          ),
-                          child: Text(
-                            "13 Sep 2024, 16.00",
-                            style: regularBrownText.copyWith(
+                          Text(
+                            "Latihan di warkop dubai",
+                            style: regularGreyText.copyWith(
                               fontSize: 13,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          const SizedBox(
+                            height: 9,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 107,
+                            ),
+                            child: Text(
+                              "13 Sep 2024, 16.00",
+                              style: regularBrownText.copyWith(
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
