@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "347122962249",
+    "project_id": "scedula-d5854",
+    "storage_bucket": "scedula-d5854.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:347122962249:android:e5c17bec5ab02033a59498",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-4i7qMJvjBBn-ztSrleD1divD8qOWcjw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
