@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:scedula/components/Register/registerFrom.dart';
+import 'package:scedula/components/Register/registerfrom.dart';
 import 'package:scedula/size_config.dart';
 import 'package:scedula/utils/constants.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 
 class Registercomponents extends StatefulWidget {
+  const Registercomponents({super.key});
+
   @override
   _RegisterComponentState createState() => _RegisterComponentState();
 }
@@ -28,7 +30,7 @@ class _RegisterComponentState extends State<Registercomponents> {
                   height: SizeConfig.screenHeight * 0.04,
                 ),
                 SimpleShadow(
-                  child: Text(
+                  child: const Text(
                     "Create An Account",
                     style: TextStyle(
                       fontSize: 30,
@@ -38,19 +40,19 @@ class _RegisterComponentState extends State<Registercomponents> {
                   ),
                   opacity: 0.5,
                   color: const Color.fromARGB(255, 241, 112, 6),
-                  offset: Offset(5, 5),
+                  offset: const Offset(5, 5),
                   sigma: 2,
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                SignUpForm(),
+                const SignUpForm(),
               ],
             ),
           ),

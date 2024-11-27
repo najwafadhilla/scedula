@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scedula/Screen/Login/Loginscreen.dart';
-import 'package:scedula/Screen/Register/Registrasi.dart';
+import 'package:scedula/Screen/Register/registrasi.dart';
 
 class WelcomeScreen extends StatelessWidget {
   static String routeName = "/welcome";
