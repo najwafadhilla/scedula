@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scedula/Screen/HomePage/home.dart';
+import 'package:scedula/Screen/Login/Loginscreen.dart';
 import 'package:scedula/editProfil/editProfil.dart';
 import 'package:scedula/hapusakun/hapus_akun.dart';
 import 'package:scedula/pusatBantuan/pusatbantuan.dart';
@@ -28,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
         title: Text(
-          "Account",
+          "Akun",
           style: GoogleFonts.inter(fontSize: 20, color: Colors.black),
         ),
       ),
@@ -232,7 +233,7 @@ class ProfileScreen extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => HapusAkunPage(),
+                                      builder: (context) => Loginscreen(),
                                     ));
                               },
                               child: Container(
@@ -246,13 +247,13 @@ class ProfileScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(
-                                      Icons.delete,
+                                      Icons.logout,
                                     ),
                                     SizedBox(
                                       width: 7,
                                     ),
                                     Text(
-                                      "Hapus Akun",
+                                      "Keluar",
                                       style: regularBlackText.copyWith(
                                           fontSize: 13),
                                     )

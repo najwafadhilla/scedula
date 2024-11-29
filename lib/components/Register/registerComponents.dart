@@ -31,7 +31,7 @@ class _RegisterComponentState extends State<Registercomponents> {
                 ),
                 SimpleShadow(
                   child: const Text(
-                    "Create An Account",
+                    "Daftar Akun",
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,

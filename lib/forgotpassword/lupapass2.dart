@@ -15,7 +15,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class VerificationPage extends StatelessWidget {
+class VerificationPage extends StatefulWidget {
+  @override
+  _VerificationPageState createState() => _VerificationPageState();
+}
+
+class _VerificationPageState extends State<VerificationPage> {
+  // Membuat list controller untuk setiap TextField
+  final List<TextEditingController> controllers =
+      List.generate(6, (index) => TextEditingController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +52,7 @@ class VerificationPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Masukkan kode verifikasi yang telah dikirim ke nomor\n08xx xxxx xx87',
+              'Masukkan kode verifikasi yang telah dikirim ke Email',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.grey,
@@ -63,12 +72,13 @@ class VerificationPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: TextField(
+                    controller: controllers[index],
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     maxLength: 1,
                     style: TextStyle(fontSize: 20),
                     decoration: InputDecoration(
-                      counterText: '',
+                      counterText: '', // Menghilangkan counter
                       border: InputBorder.none,
                     ),
                   ),
@@ -80,6 +90,7 @@ class VerificationPage extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
+                  // Menavigasi ke halaman selanjutnya
                   Navigator.push(
                       context,
                       MaterialPageRoute(
