@@ -1,10 +1,28 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import '../messaging/notifikasi_service.dart';
+// import 'firebase_notification_service.dart'; // Impor service notifikasi Firebase
 import 'package:scedula/Screen/Login/Loginscreen.dart';
 import 'package:scedula/Screen/Register/registrasi.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
   static String routeName = "/welcome";
   const WelcomeScreen({super.key});
+
+  @override
+  _WelcomeScreenState createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  FirebaseNotificationService _notificationService =
+      FirebaseNotificationService();
+
+  @override
+  void initState() {
+    super.initState();
+    // Inisialisasi Firebase Notification Service
+    _notificationService.initialize(context);
+  }
 
   @override
   Widget build(BuildContext context) {

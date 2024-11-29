@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // Untuk SystemUiOverlayStyle
 import 'package:scedula/utils/constants.dart';
 
- 
 ThemeData theme() {
   return ThemeData(
     scaffoldBackgroundColor: Colors.white,
@@ -13,7 +12,7 @@ ThemeData theme() {
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }
- 
+
 InputDecorationTheme inputDecorationTheme() {
   OutlineInputBorder outlineInputBorder = OutlineInputBorder(
     borderRadius: BorderRadius.circular(28),
@@ -31,18 +30,16 @@ InputDecorationTheme inputDecorationTheme() {
     border: outlineInputBorder,
   );
 }
- 
 
 TextTheme textTheme() {
   return const TextTheme(
-    bodyLarge: TextStyle(color: kTextColor),  
-    bodyMedium: TextStyle(color: kTextColor), 
+    bodyLarge: TextStyle(color: kTextColor),
+    bodyMedium: TextStyle(color: kTextColor),
   );
 }
 
-
 AppBarTheme appBarTheme() {
-  return AppBarTheme( 
+  return AppBarTheme(
     color: Colors.white,
     elevation: 0,
     systemOverlayStyle: SystemUiOverlayStyle.light,
@@ -53,5 +50,3 @@ AppBarTheme appBarTheme() {
     ),
   );
 }
-
- 
