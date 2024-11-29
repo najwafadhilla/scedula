@@ -1,21 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:scedula/forgotpassword/lupapass2.dart';
-import 'package:scedula/theme/color_theme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../Screen/Login/Loginscreen.dart';
+import '../theme/color_theme.dart';
 
-void main() {
-  runApp(MyApp());
-}
+class ForgotPasswordScreen extends StatefulWidget {
+  const ForgotPasswordScreen({super.key});
 
-class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ForgotPasswordScreen(),
-    );
-  }
+  _ForgotPasswordScreenState createState() => _ForgotPasswordScreenState();
 }
 
-class ForgotPasswordScreen extends StatelessWidget {
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future<void> _resetPassword() async {
+    try {
+      // Mengirim email reset password
+      await _auth.sendPasswordResetEmail(email: _emailController.text.trim());
+
+      // Notifikasi sukses
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Email reset password telah dikirim!')),
+      );
+    } catch (e) {
+      // Menampilkan error
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Gagal mengirim email: ${e.toString()}')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,28 +63,26 @@ class ForgotPasswordScreen extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              'Masukkan Email anda untuk reset password',
+              'Masukkan email Anda untuk reset password.',
               style: TextStyle(fontSize: 16, color: blackColor),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
+            // TextField terhubung ke _emailController
             TextField(
+              controller: _emailController,
               decoration: InputDecoration(
                 labelText: 'Email',
-                hintText: 'Masukkan Email',
+                hintText: 'Masukkan email Anda',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
             ),
             SizedBox(height: 20),
+            // Tombol "Kirim" memanggil _resetPassword()
             ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => VerificationPage()));
-              },
+              onPressed: _resetPassword,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange,
                 padding: EdgeInsets.symmetric(vertical: 16),
@@ -78,9 +91,15 @@ class ForgotPasswordScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 16, color: Colors.white)),
             ),
             SizedBox(height: 20),
+            // Tombol kembali ke halaman login
             TextButton.icon(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Loginscreen(),
+                  ),
+                );
               },
               icon: Icon(Icons.arrow_back, color: Colors.orange),
               label: Text(

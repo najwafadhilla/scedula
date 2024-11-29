@@ -17,9 +17,14 @@ import 'package:scedula/theme/color_theme.dart';
 import 'package:scedula/theme/fonts_theme.dart';
 import 'package:scedula/notifikasi/notifikasi.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
