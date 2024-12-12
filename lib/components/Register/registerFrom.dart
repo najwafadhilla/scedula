@@ -5,6 +5,7 @@ import 'package:scedula/components/default_button_custome_color.dart';
 import 'package:scedula/size_config.dart';
 import 'package:scedula/utils/constants.dart';
 import 'package:scedula/Screen/Login/Loginscreen.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
@@ -16,6 +17,7 @@ class SignUpForm extends StatefulWidget {
 class _SignUpForm extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   TextEditingController txtNamaLengkap = TextEditingController();
   TextEditingController txtUsername = TextEditingController();
@@ -24,32 +26,29 @@ class _SignUpForm extends State<SignUpForm> {
 
   bool _isLoading = false;
 
+  // Fungsi untuk register user dengan email dan password
   Future<void> _registerUser() async {
     setState(() {
       _isLoading = true;
     });
 
     try {
-      // Buat akun dengan email dan password
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
         email: txtEmail.text,
         password: txtPassword.text,
       );
 
-      // Menampilkan pesan berhasil
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Registrasi berhasil!')),
       );
 
-      // Navigasi ke halaman login
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const Loginscreen()),
       );
     } on FirebaseAuthException catch (e) {
-      // Menangani error Firebase
-      String errorMessage;
+      String errorMessage = '';
       if (e.code == 'weak-password') {
         errorMessage = 'Password terlalu lemah.';
       } else if (e.code == 'email-already-in-use') {
@@ -63,6 +62,58 @@ class _SignUpForm extends State<SignUpForm> {
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error: $e')),
+      );
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  // Fungsi untuk sign in dengan Google
+  Future<void> _signInWithGoogle() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      // Menjalankan proses sign-in dengan Google
+      GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) {
+        setState(() {
+          _isLoading = false;
+        });
+        return;
+      }
+
+      // Mendapatkan kredensial dari Google SignIn
+      GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      AuthCredential credential = GoogleAuthProvider.credential(
+        idToken: googleAuth.idToken,
+        accessToken: googleAuth.accessToken,
+      );
+
+      // Masuk menggunakan kredensial Google
+      UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Google Sign-In berhasil!')),
+      );
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                const Loginscreen()), // Ganti dengan halaman yang sesuai
+      );
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: ${e.message}')),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Terjadi kesalahan: $e')),
       );
     } finally {
       setState(() {
@@ -99,6 +150,16 @@ class _SignUpForm extends State<SignUpForm> {
           const SizedBox(
             height: 10,
           ),
+
+          // Tombol untuk Sign In dengan Google
+          DefaultButtonCustomeColor(
+            color: Colors.blue, // Tombol Google menggunakan warna biru
+            text: "Sign in with Google",
+            press: _signInWithGoogle, // Memanggil fungsi Google Sign-In
+          ),
+          SizedBox(
+            height: 20,
+          ),
           GestureDetector(
             onTap: () {
               Navigator.pushNamed(context, Loginscreen.routeName);
@@ -108,11 +169,15 @@ class _SignUpForm extends State<SignUpForm> {
               style: TextStyle(decoration: TextDecoration.underline),
             ),
           ),
+          const SizedBox(
+            height: 10,
+          ),
         ],
       ),
     );
   }
 
+  // Input untuk Nama Lengkap
   TextFormField buildNamaLengkap() {
     return TextFormField(
       controller: txtNamaLengkap,
@@ -129,6 +194,7 @@ class _SignUpForm extends State<SignUpForm> {
     );
   }
 
+  // Input untuk Username
   TextFormField buildUserName() {
     return TextFormField(
       controller: txtUsername,
@@ -144,6 +210,7 @@ class _SignUpForm extends State<SignUpForm> {
     );
   }
 
+  // Input untuk Email
   TextFormField buildEmail() {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
@@ -168,6 +235,7 @@ class _SignUpForm extends State<SignUpForm> {
     );
   }
 
+  // Input untuk Password
   TextFormField buildPassword() {
     return TextFormField(
       controller: txtPassword,
