@@ -7,6 +7,7 @@ import 'package:scedula/components/default_button_custome_color.dart';
 import 'package:scedula/forgotpassword/lupapass1.dart';
 import 'package:scedula/size_config.dart';
 import 'package:scedula/utils/constants.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({super.key});
@@ -18,6 +19,7 @@ class SignInForm extends StatefulWidget {
 class _SignInForm extends State<SignInForm> {
   final _formKey = GlobalKey<FormState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   TextEditingController txtUsername = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
@@ -26,20 +28,68 @@ class _SignInForm extends State<SignInForm> {
   bool? remeber = false;
   bool _isLoading = false;
 
+  // Fungsi login dengan Google
+  Future<void> _signInWithGoogle() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      // Menjalankan proses sign-in dengan Google
+      GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) {
+        setState(() {
+          _isLoading = false;
+        });
+        return;
+      }
+
+      // Mendapatkan kredensial dari Google SignIn
+      GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      AuthCredential credential = GoogleAuthProvider.credential(
+        idToken: googleAuth.idToken,
+        accessToken: googleAuth.accessToken,
+      );
+
+      // Login menggunakan kredensial Google
+      await _auth.signInWithCredential(credential);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Login dengan Google berhasil!')),
+      );
+
+      // Navigasi ke halaman Home
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: ${e.message}')),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Terjadi kesalahan: $e')),
+      );
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  // Fungsi login dengan email dan password
   Future<void> _signIn() async {
     setState(() {
       _isLoading = true;
     });
 
     try {
-      // Login dengan email dan password
       await _auth.signInWithEmailAndPassword(
-        email: txtUsername
-            .text, // Anda bisa mengganti username dengan email untuk autentikasi
+        email: txtUsername.text,
         password: txtPassword.text,
       );
 
-      // Navigasi ke halaman Home setelah login berhasil
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Login berhasil!')),
       );
@@ -119,6 +169,14 @@ class _SignInForm extends State<SignInForm> {
                     }
                   },
                 ),
+          SizedBox(height: 20),
+
+          // Tombol Login dengan Google
+          DefaultButtonCustomeColor(
+            color: Colors.blue, // Warna tombol Google Sign-In
+            text: "Login dengan Google",
+            press: _signInWithGoogle,
+          ),
           SizedBox(height: 20),
           GestureDetector(
             onTap: () {
